@@ -7,19 +7,19 @@ const principalRouter = express.Router()
 principalRouter.post("/registerPrincipal",registerPrincipal)
 principalRouter.post("/loginPrincipal",loginPrincipal)
 
-principalRouter.get("/getAllIncharges",getAllIncharges)
-principalRouter.get("/getOneIncharge", getOneIncharge)
+principalRouter.get("/getAllIncharges",principalAuthentication,getAllIncharges)
+principalRouter.get("/getOneIncharge", principalAuthentication,getOneIncharge)
 
-principalRouter.patch("/updateIncharge",updateIncharge)
+principalRouter.patch("/updateIncharge",principalAuthentication,updateIncharge)
 
-principalRouter.delete("/removeIncharge",removeIncharge)
+principalRouter.delete("/removeIncharge",principalAuthentication,removeIncharge)
 
-principalRouter.get("/getAllPrincipals",getAllPrincipals)
-principalRouter.get("/getOnePrincipal", getOnePrincipal)
+principalRouter.get("/getAllPrincipals",principalAuthentication,getAllPrincipals)
+principalRouter.get("/getOnePrincipal", principalAuthentication,getOnePrincipal)
 
-principalRouter.patch("/updatePrincipal",updatePrincipal)
+principalRouter.patch("/updatePrincipal",principalAuthentication,updatePrincipal)
 
-principalRouter.delete("/removePrincipal",removePrincipal)
+principalRouter.delete("/removePrincipal",principalAuthentication,removePrincipal)
 
 
 module.exports =  principalRouter

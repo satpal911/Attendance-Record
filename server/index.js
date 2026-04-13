@@ -6,6 +6,7 @@ const cors = require("cors")
 const studentRouter = require("./routes/student.router")
 const inchargeRouter = require("./routes/incharge.router")
 const principalRouter = require("./routes/principal.router")
+const attendanceRouter = require("./routes/attendance.router")
 const app = express()
 const port = process.env.PORT || 4000
 
@@ -16,6 +17,7 @@ app.use(cors())
 app.use("/api/v1/student",studentRouter)
 app.use("/api/v1/incharge",inchargeRouter)
 app.use("/api/v1/principal",principalRouter)
+app.use("/api/v1/attendance",attendanceRouter)
 connectDb()
 .then(()=>{
     app.listen(port,()=>{

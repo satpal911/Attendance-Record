@@ -11,9 +11,15 @@ const attendanceSchema = new mongoose.Schema(
     studentId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Student"
+    },
+     dateString: {
+        type: String,
+        required: true
     }
   },
   { timestamps: true }
 )
+
+attendanceSchema.index({studentId: 1, dateString: 1},{unique: true})
 
 module.exports = mongoose.model("Attendance",attendanceSchema)

@@ -63,7 +63,7 @@ const registerStudent = async (req, res) => {
     const emailLower = email.trim().toLowerCase()
     const existStudent = await Student.findOne({ email: emailLower })
     if (existStudent) {
-      return res.status(401).json({ message: 'student already registered' })
+      return res.status(401).json({ message: 'student already registered with this email' })
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
