@@ -92,4 +92,80 @@ const registerStudent = async (req, res) => {
   }
 }
 
-module.exports = { loginIncharge, registerStudent }
+const getAllStudents = async(req,res) =>{
+  try {
+    const {className} = req.query
+    const filter = className ? {className} : {};
+
+    const students = await Student.find(filter).select("-password");
+
+    res.status(200).json({
+      status: 1,
+      message: "All students fetched successfully",
+      count: students.length,
+      data: students
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: 0,
+      message: `server error ${error}`
+    })
+  }
+}
+
+const getOneStudent = async(req,res) =>{
+  try {
+    const {studentId} = req.query
+    const student = await Student.findById(studentId).select("-password")
+
+    res.status(200).json({
+      status: 1,
+      message: "student fetched successfully",
+      data: student
+    })
+
+  } catch (error) {
+    res.status(500).json({
+      status: 0,
+      message: `server error ${error}`
+    })
+  }
+}
+
+const updateStudent = async(req,res) =>{
+  try {
+     const {studentId} = req.query
+    const student = await Student.findByIdAndUpdate(studentId,req.body,{new:true}).select("-password")
+
+    res.status(200).json({
+      status: 1,
+      message: "student updated successfully",
+      data: student
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: 0,
+      message: `server error ${error}`
+    })
+  }
+}
+
+const removeStudent = async(req,res) =>{
+  try {
+     const {studentId} = req.query
+    const student = await Student.findByIdAndDelete(studentId).select("-password")
+
+    res.status(200).json({
+      status: 1,
+      message: "student removed successfully",
+      data: student
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: 0,
+      message: `server error ${error}`
+    })
+  }
+}
+
+module.exports = { loginIncharge, registerStudent, getAllStudents, getOneStudent, updateStudent, removeStudent }

@@ -1,6 +1,10 @@
 const mongoose = require ("mongoose")
 
 const principalSchema = new mongoose.Schema({
+    schoolName:{
+        type: String,
+        required: true
+    },
     name:{
         type: String,
         required: true
